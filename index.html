@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="inner landscape — compassionate spaces to explore the psyche through breath and body. Breathwork, therapy & coaching, retreats and workshops with Hannah de Waal, Den Haag." />
+<title>inner landscape</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2333412c'/%3E%3Cpath d='M50 22c-14 18-18 30-18 40a18 18 0 0 0 36 0c0-10-4-22-18-40z' fill='%23e9dfc9'/%3E%3C/svg%3E" />
+<!-- Fonts: blocked in some previews, falls back to Georgia / system fonts. Loads when deployed. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #f6f1e7;
+    --cream-soft: #faf7f0;
+    --ink: #333f2d;
+    --ink-soft: #5a6352;
+    --moss: #33412c;
+    --moss-deep: #232b1f;
+    --sage: #9aa88f;
+    --clay: #a8673f;
+    --clay-soft: #c89272;
+    --line: #ddd2bd;
+    --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --sans: "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.75;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: var(--clay); text-decoration: none; }
+  a:hover { color: var(--moss); }
+
+  /* ---------- header ---------- */
+  header.site {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(246, 241, 231, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 28px;
+  }
+  .wordmark {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 26px; letter-spacing: 0.08em;
+    color: var(--moss); text-transform: lowercase;
+    line-height: 1;
+  }
+  .wordmark:hover { color: var(--clay); }
+  nav.main ul { list-style: none; display: flex; gap: 30px; }
+  nav.main a {
+    font-family: var(--sans); font-weight: 400;
+    text-transform: lowercase; letter-spacing: 0.14em;
+    font-size: 12.5px; color: var(--ink-soft);
+    padding-bottom: 3px; border-bottom: 1px solid transparent;
+  }
+  nav.main a:hover, nav.main a.active { color: var(--moss); border-bottom-color: var(--clay); }
+  .burger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+  .burger span { display: block; width: 24px; height: 1.5px; background: var(--moss); margin: 5px 0; transition: 0.3s; }
+  .insta-nav { display: inline-flex; align-items: center; gap: 7px; }
+  .insta-nav svg { width: 17px; height: 17px; }
+  .insta-nav:hover svg path { stroke: var(--moss); }
+  @media (max-width: 900px) {
+    .burger { display: block; }
+    nav.main {
+      display: none;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--cream-soft); border-bottom: 1px solid var(--line);
+      padding: 10px 28px 22px;
+    }
+    body.nav-open nav.main { display: block; }
+    nav.main ul { flex-direction: column; gap: 16px; padding: 0; }
+    .header-cta { display: none; }
+  }
+
+  /* ---------- pages ---------- */
+  .page { display: none; }
+  .page.active { display: block; animation: fadein 0.5s ease; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  section.block { padding: 90px 28px; }
+  .wrap { max-width: 1160px; margin: 0 auto; }
+  .narrow { max-width: 760px; margin: 0 auto; text-align: center; }
+  h1, h2, h3, h4 { font-family: var(--serif); font-weight: 400; color: var(--moss); line-height: 1.2; }
+  h2.section-title { font-size: clamp(34px, 4.5vw, 52px); text-align: center; margin-bottom: 14px; }
+  .section-sub { text-align: center; color: var(--ink-soft); margin-bottom: 60px; font-style: italic; font-family: var(--serif); font-size: 21px; }
+  p + p { margin-top: 1.2em; }
+  em { font-style: italic; }
+  .center { text-align: center; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative; height: 94vh; min-height: 540px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; text-align: center;
+  }
+  .hero img.hero-bg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: 50% 45%;
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(26,32,22,0.42), rgba(26,32,22,0.28) 55%, rgba(26,32,22,0.5));
+  }
+  .hero-content { position: relative; z-index: 2; padding: 0 24px; color: #f8f4ea; }
+  .hero-content h1 {
+    color: #f8f4ea; font-size: clamp(52px, 9vw, 108px);
+    font-weight: 300; letter-spacing: 0.06em; text-transform: lowercase;
+  }
+  .hero-content .tagline {
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(19px, 2.6vw, 28px);
+    margin-top: 10px; color: #efe8d6;
+  }
+  .scroll-hint {
+    position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
+    z-index: 2; color: #f8f4ea; font-size: 11px; letter-spacing: 0.3em;
+    text-transform: uppercase; opacity: 0.85;
+  }
+  .scroll-hint::after { content: ""; display: block; width: 1px; height: 34px; background: #f8f4ea; margin: 10px auto 0; }
+
+  /* page hero (smaller, inner pages) */
+  .page-hero { position: relative; height: 52vh; min-height: 340px; overflow: hidden; display: flex; align-items: flex-end; }
+  .page-hero img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
+  .page-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,32,22,0.55), rgba(26,32,22,0.05)); }
+  .page-hero .ph-title {
+    position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; width: 100%;
+    padding: 0 28px 44px; color: #f8f4ea;
+    font-family: var(--serif); font-size: clamp(40px, 6vw, 68px); font-weight: 300;
+    text-transform: lowercase; letter-spacing: 0.05em;
+  }
+
+  /* ---------- offerings ---------- */
+  .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; }
+  @media (max-width: 820px) { .offer-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
+  .offer-card { text-align: center; background: var(--cream-soft); border: 1px solid var(--line); }
+  .offer-card a { display: block; color: inherit; }
+  .offer-card .offer-img { aspect-ratio: 16 / 11; overflow: hidden; }
+  .offer-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .offer-card:hover img { transform: scale(1.04); }
+  .offer-card h3 { font-size: 27px; padding: 26px 20px 4px; }
+  .offer-card p { font-size: 15px; letter-spacing: 0.06em; color: var(--ink-soft); padding: 0 20px 30px; line-height: 1.6; }
+  .offer-card h3 a { color: var(--moss); }
+  .offer-card h3 a:hover { color: var(--clay); }
+
+  /* ---------- statement ---------- */
+  .statement {
+    background: var(--moss); color: #eee7d3;
+    text-align: center; padding: 100px 28px;
+  }
+  .statement p {
+    font-family: var(--serif); font-size: clamp(26px, 3.4vw, 40px);
+    font-weight: 300; line-height: 1.5; max-width: 900px; margin: 0 auto;
+  }
+  .statement b { font-weight: 500; color: #d9b48b; }
+
+  /* ---------- accordion ---------- */
+  .acc-wrap { max-width: 720px; margin: 0 auto; }
+  details.accordion { border-top: 1px solid var(--line); }
+  details.accordion:last-of-type { border-bottom: 1px solid var(--line); }
+  details.accordion summary {
+    cursor: pointer; list-style: none;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 26px 6px;
+    font-family: var(--serif); font-size: 30px; font-weight: 400; color: var(--moss);
+    transition: color 0.25s;
+  }
+  details.accordion summary::-webkit-details-marker { display: none; }
+  details.accordion summary:hover { color: var(--clay); }
+  details.accordion summary .plus {
+    font-family: var(--sans); font-weight: 300; font-size: 26px; color: var(--clay);
+    transition: transform 0.3s ease;
+  }
+  details.accordion[open] summary .plus { transform: rotate(45deg); }
+  details.accordion .acc-body { padding: 0 6px 34px; color: var(--ink-soft); max-width: 620px; }
+  details.accordion .acc-body p:first-child { margin-top: 0; }
+
+  /* ---------- newsletter & forms ---------- */
+  .newsletter { background: var(--cream-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .newsletter h3 { font-size: 32px; margin-bottom: 6px; }
+  .newsletter .nl-sub { color: var(--ink-soft); font-style: italic; font-family: var(--serif); font-size: 19px; margin-bottom: 34px; }
+  form.nl, form.contact { max-width: 620px; margin: 0 auto; text-align: left; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 560px) { .field-row { grid-template-columns: 1fr; } }
+  label { display: block; font-size: 12px; letter-spacing: 0.14em; text-transform: lowercase; color: var(--ink-soft); margin: 18px 0 6px; }
+  input, textarea {
+    width: 100%; background: transparent; border: none;
+    border-bottom: 1px solid var(--line);
+    padding: 8px 2px; font-family: var(--sans); font-size: 16px;
+    color: var(--ink); outline: none; border-radius: 0;
+  }
+  input:focus, textarea:focus { border-bottom-color: var(--clay); }
+  textarea { resize: vertical; min-height: 120px; }
+  .btn {
+    display: inline-block; cursor: pointer;
+    background: transparent; border: 1px solid var(--moss);
+    color: var(--moss); font-family: var(--sans);
+    font-size: 13px; letter-spacing: 0.2em; text-transform: lowercase;
+    padding: 13px 34px; margin-top: 30px;
+    transition: all 0.3s ease;
+  }
+  .btn:hover { background: var(--moss); color: var(--cream); border-color: var(--moss); }
+  .btn.solid { background: var(--moss); color: var(--cream); }
+  .btn.solid:hover { background: var(--clay); border-color: var(--clay); }
+  .form-note { font-size: 13px; color: var(--ink-soft); margin-top: 16px; }
+  .req { color: var(--clay); }
+
+  /* ---------- about page ---------- */
+  .about-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 60px; align-items: start; }
+  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
+  .portrait-sticky { position: sticky; top: 110px; }
+  @media (max-width: 860px) { .portrait-sticky { position: static; } }
+  .portrait-main { aspect-ratio: 3 / 4; overflow: hidden; }
+  .portrait-main img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+  .portrait-caption { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-top: 10px; }
+  .about-text h1 { font-size: clamp(40px, 5vw, 58px); margin-bottom: 4px; }
+  .about-text .roles { color: var(--clay); letter-spacing: 0.12em; font-size: 14px; text-transform: lowercase; margin-bottom: 34px; }
+  .about-text p { color: var(--ink-soft); }
+  .proverb {
+    font-family: var(--serif); font-style: italic; font-size: 27px;
+    color: var(--moss); border-left: 2px solid var(--clay);
+    padding: 6px 0 6px 26px; margin: 36px 0; line-height: 1.45;
+  }
+  .proverb .attrib { display: block; font-size: 14px; font-style: normal; color: var(--ink-soft); margin-top: 8px; letter-spacing: 0.1em; }
+  .train-card {
+    background: var(--cream-soft); border: 1px solid var(--line);
+    padding: 34px 38px; margin-top: 40px;
+  }
+  .train-card h4 { font-size: 22px; margin-bottom: 12px; color: var(--clay); }
+  .train-card ul { list-style: none; }
+  .train-card li { padding: 7px 0 7px 22px; position: relative; color: var(--ink-soft); font-size: 16px; border-bottom: 1px dashed var(--line); }
+  .train-card li:last-child { border-bottom: none; }
+  .train-card li::before { content: "◆"; position: absolute; left: 0; top: 9px; font-size: 7px; color: var(--clay); }
+  .lineage {
+    font-family: var(--serif); font-style: italic; font-size: 21px;
+    color: var(--ink-soft); line-height: 1.7; margin-top: 40px;
+    padding: 34px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+
+  /* ---------- testimonials ---------- */
+  .testimonials { background: var(--moss); color: #e9e1cc; }
+  .testimonials h2.section-title { color: #f2ecdb; }
+  .tstage { position: relative; max-width: 760px; margin: 0 auto; min-height: 240px; }
+  .tslide { display: none; text-align: center; }
+  .tslide.visible { display: block; animation: fadein 0.5s ease; }
+  .tslide .tquote {
+    font-family: var(--serif); font-style: italic; font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.65; color: #f2ecdb;
+  }
+  .tslide .tquote::before { content: "\201C"; color: var(--clay-soft); }
+  .tslide .tquote::after { content: "\201D"; color: var(--clay-soft); }
+  .tslide .tauthor { margin-top: 26px; font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--clay-soft); }
+  .tnav { display: flex; align-items: center; justify-content: center; gap: 22px; margin-top: 36px; }
+  .tarrow {
+    background: none; border: 1px solid #5a6352; color: #e9e1cc;
+    width: 42px; height: 42px; border-radius: 50%; cursor: pointer; font-size: 16px;
+    transition: all 0.25s; line-height: 1;
+  }
+  .tarrow:hover { border-color: var(--clay-soft); color: var(--clay-soft); }
+  .tdots { display: flex; gap: 10px; }
+  .tdot { width: 7px; height: 7px; border-radius: 50%; background: #5a6352; cursor: pointer; transition: background 0.25s; }
+  .tdot.on { background: var(--clay-soft); }
+
+  /* ---------- breathwork ---------- */
+  .prose { max-width: 720px; margin: 0 auto; }
+  .prose h3 {
+    font-size: clamp(27px, 3vw, 34px); margin: 60px 0 14px; text-align: center;
+  }
+  .prose h3:first-child { margin-top: 0; }
+  .prose p { color: var(--ink-soft); margin-bottom: 1.2em; }
+  .prose .lead { font-size: 20px; font-family: var(--serif); color: var(--ink); }
+  .pull-quote {
+    font-family: var(--serif); font-style: italic; font-size: 26px;
+    text-align: center; color: var(--moss);
+    padding: 50px 20px; margin: 30px 0;
+  }
+  .pull-quote::before, .pull-quote::after { content: ""; display: block; width: 40px; height: 1px; background: var(--clay); margin: 0 auto 22px; }
+  .pull-quote::after { margin: 22px auto 0; }
+  .exp-list { list-style: none; max-width: 720px; margin: 20px auto 0; text-align: left; }
+  .exp-list li { border-top: 1px solid var(--line); padding: 26px 4px; }
+  .exp-list li:last-child { border-bottom: 1px solid var(--line); }
+  .exp-list b, .exp-list strong {
+    display: block; font-family: var(--serif); font-weight: 500;
+    font-size: 23px; color: var(--moss); margin-bottom: 8px;
+  }
+  .exp-list li p { color: var(--ink-soft); margin: 0; }
+  .two-col-list { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 900px; margin: 0 auto; text-align: left; }
+  @media (max-width: 720px) { .two-col-list { grid-template-columns: 1fr; gap: 10px; } }
+  .tick-list { list-style: none; }
+  .tick-list li { padding: 9px 0 9px 26px; position: relative; color: var(--ink-soft); border-bottom: 1px dashed var(--line); }
+  .tick-list li::before { content: "—"; position: absolute; left: 2px; color: var(--clay); }
+  .col-label { font-size: 12.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--clay); margin-bottom: 14px; }
+  .img-band { overflow: hidden; }
+  .img-band img { width: 100%; height: 100%; object-fit: cover; }
+  .cta-band { text-align: center; }
+  .cta-band .cta-q { font-family: var(--serif); font-size: 38px; color: var(--moss); margin-bottom: 26px; }
+
+  /* ---------- workshops ---------- */
+  .when { text-align: center; color: var(--ink-soft); max-width: 640px; margin: -30px auto 60px; font-family: var(--serif); font-style: italic; font-size: 19px; }
+  .ws-block { max-width: 820px; margin: 0 auto 70px; }
+  .ws-block h3 { font-size: 32px; margin-bottom: 18px; }
+  .ws-block p { color: var(--ink-soft); }
+  .ws-sub { color: var(--clay); font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px; display: block; }
+  .event { border-top: 1px solid var(--line); padding: 34px 0; display: grid; grid-template-columns: 190px 1fr; gap: 30px; }
+  .event:last-of-type { border-bottom: 1px solid var(--line); }
+  @media (max-width: 640px) { .event { grid-template-columns: 1fr; gap: 8px; } }
+  .event .e-date { font-family: var(--serif); font-size: 20px; color: var(--clay); line-height: 1.4; }
+  .event .e-date b { display: block; font-weight: 500; }
+  .event h4 { font-size: 25px; margin-bottom: 8px; }
+  .event p { color: var(--ink-soft); font-size: 16px; margin: 0; }
+  .event .e-note { display: block; margin-top: 10px; font-style: italic; font-size: 14.5px; color: var(--clay); }
+  .event .e-loc { font-size: 12.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+
+  /* ---------- book / resources ---------- */
+  .book-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  @media (max-width: 820px) { .book-grid { grid-template-columns: 1fr; } }
+  .book-grid .side-img { aspect-ratio: 4 / 5; overflow: hidden; }
+  .book-grid .side-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; }
+  .res-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 50px; }
+  @media (max-width: 720px) { .res-grid { grid-template-columns: 1fr; } }
+  .res-card { background: var(--cream-soft); border: 1px solid var(--line); padding: 40px 36px; }
+  .res-card h4 { font-size: 26px; margin-bottom: 12px; }
+  .res-card p { color: var(--ink-soft); font-size: 16px; margin-bottom: 18px; }
+  .res-card a.more { font-size: 13px; letter-spacing: 0.16em; text-transform: lowercase; border-bottom: 1px solid var(--clay); padding-bottom: 2px; }
+
+  /* ---------- footer ---------- */
+  footer.site { background: var(--moss-deep); color: #b9b29c; padding: 70px 28px 40px; }
+  .footer-inner { max-width: 1160px; margin: 0 auto; display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+  .footer-inner h5 { font-family: var(--serif); font-size: 30px; color: #eee7d3; font-weight: 400; margin-bottom: 14px; }
+  footer.site ul { list-style: none; }
+  footer.site li { margin: 8px 0; }
+  footer.site a { color: #b9b29c; font-size: 14px; letter-spacing: 0.08em; }
+  footer.site a:hover { color: #e8dfc7; }
+  .footer-bottom {
+    max-width: 1160px; margin: 50px auto 0; padding-top: 24px;
+    border-top: 1px solid #3c4634; display: flex; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px; font-size: 12.5px; letter-spacing: 0.1em;
+  }
+  .footer-bottom a { display: inline-flex; align-items: center; gap: 8px; }
+  .footer-bottom svg { width: 15px; height: 15px; }
+
+  .spacer-img { aspect-ratio: 21 / 9; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="header-inner">
+    <a href="#home" class="wordmark">inner landscape</a>
+    <nav class="main" id="mainnav">
+      <ul>
+        <li><a href="#home" data-nav="home">home</a></li>
+        <li><a href="#about" data-nav="about">about</a></li>
+        <li><a href="#breathwork" data-nav="breathwork">breathwork</a></li>
+        <li><a href="#workshops" data-nav="workshops">workshops</a></li>
+        <li><a href="#book-a-session" data-nav="book-a-session">book a session</a></li>
+        <li><a href="#resources" data-nav="resources">resources</a></li>
+      </ul>
+    </nav>
+    <a class="insta-nav header-cta" href="https://www.instagram.com/hannahdewaal_/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M7 2h10c2.76 0 5 2.24 5 5v10c0 2.76-2.24 5-5 5H7c-2.76 0-5-2.24-5-5V7c0-2.76 2.24-5 5-5z" stroke="#5a6352" stroke-width="1.5"/><circle cx="12" cy="12" r="4.2" stroke="#5a6352" stroke-width="1.5"/><circle cx="17.4" cy="6.6" r="1.1" fill="#5a6352"/></svg>
+    </a>
+    <button class="burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+
+<!-- ==================== HOME ==================== -->
+<div class="page" id="page-home">
+
+  <div class="hero">
+    <img class="hero-bg" data-name="landscape0.jpg" src="https://raw.githubusercontent.com/thefriendlyroast/innerlandscape/main/images/landscape0.jpg" alt="a wide natural landscape" />
+    <div class="hero-content">
+      <h1>inner landscape</h1>
+      <p class="tagline">compassionate spaces to explore the psyche through breath and body</p>
+    </div>
+    <div class="scroll-hint">breathe</div>
+  </div>
+
+  <section class="block">
+    <div class="wrap">
+      <h2 class="section-title">offerings</h2>
+      <p class="section-sub">ways to work together</p>
+      <div class="offer-grid">
+        <div class="offer-card">
+          <div class="offer-img"><img data-name="hannah2.jpg" src="https://raw.githubusercontent.com/thefriendlyroast/innerlandscape/main/images/hannah2.jpg" alt="hannah" loading="lazy" style="object-position:50% 30%" /></div>
+          <h3><a href="#book-a-session">1 on 1 guidance</a></h3>
+          <p>therapy &amp; coaching</p>
+        </div>
+        <div class="offer-card">
+          <div class="offer-img"><img data-name="landscape6.JPG" src="https://raw.githubusercontent.com/thefriendlyroast/innerlandscape/main/images/landscape6.JPG" alt="an inner landscape" loading="lazy" /></div>
+          <h3><a href="#breathwork">inner journeys</a></h3>
+          <p>breathwork · psychedelic experiences</p>
+        </div>
+        <div class="offer-card">
+          <div class="offer-img"><img data-name="landscape10.JPG" src="https://raw.githubusercontent.com/thefriendlyroast/innerlandscape/main/images/landscape10.JPG" alt="retreat setting" loading="lazy" /></div>
+          <h3><a href="#workshops">workshops</a></h3>
+          <p>retreats · weekly classes · women&rsquo;s circles</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="statement">
+    <p>inner landscape is a space to <b>listen</b> within, <b>explore</b> the psyche, and <b>remember</b> your true nature</p>
+  </div>
+
+  <section class="block">
+    <div class="acc-wrap">
+      <details class="accordion">
+        <summary>breath <span class="plus">+</span></summary>
+        <div class="acc-body">
+          <p>the way you breathe determines the way you live.</p>
+          <p>conscious breathing instantly alters physiology. try receiving a deep breath into the belly as you read this sentence, noticing any sensations. sometimes shifting our state can be that simple.</p>
+          <p>the breath can also be a tool in accessing expanded states of awareness, allowing you to explore more subtle layers of reality.</p>
+        </div>
+      </details>
+      <details class="accordion">
+        <summary>body <span class="plus">+</span></summary>
+        <div class="acc-body">
+          <p>there are many ways of knowing.</p>
+          <p>although we tend to favour the brain, every cell of our body possesses innate intelligence &mdash; a kind of sensory knowledge.</p>
+          <p>the body is a well of information. within every tingle, tension, numbness, and relaxation there is information.</p>
+          <p>by listening to and exploring the body we can reach insights inaccessible to the mind alone.</p>
+        </div>
+      </details>
+      <details class="accordion">
+        <summary>soul <span class="plus">+</span></summary>
+        <div class="acc-body">
+          <p>acknowledging the soul is acknowledging our immaterial essence, our expansive being beyond the body-mind. it is acknowledging the great mystery of existence.</p>
+          <p>exploring the soul brings us into the realms of dreams and imagination. here lies our creativity and the greatest gifts we can share with the world.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="block newsletter">
+    <div class="narrow">
+      <h3>let&rsquo;s connect</h3>
+      <p class="nl-sub">stay up to date with the latest events and offerings, and occasional musings</p>
+      <!-- TODO: replace the action URL with your Buttondown embed URL
+           (Buttondown → your newsletter → Embed → copy the form action) -->
+      <form class="nl" action="https://buttondown.email/api/emails/embed-subscribe/your-newsletter" method="post" target="_blank">
+        <div class="field-row">
+          <div>
+            <label for="nl-first">first name</label>
+            <input type="text" id="nl-first" name="first_name" />
+          </div>
+          <div>
+            <label for="nl-last">last name</label>
+            <input type="text" id="nl-last" name="last_name" />
+          </div>
+        </div>
+        <label for="nl-email">email <span class="req">*</span></label>
+        <input type="email" id="nl-email" name="email" required />
+        <div class="center">
+          <button type="submit" class="btn">subscribe</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== ABOUT ==================== -->
+<div class="page" id="page-about">
+  <section class="block">
+    <div class="wrap about-grid">
+      <div class="portrait-sticky">
+        <div class="portrait-main">
+          <img data-name="hannah1.JPG" src="https://raw.githubusercontent.com/thefriendlyroast/innerlandscape/main/images/hannah1.JPG" alt="hannah de waal" />
+        </div>
+        <p class="portrait-caption">hannah de waal</p>
+      </div>
+      <div class="about-text">
+        <h1>hannah de waal</h1>
+        <p class="roles">psychologist · breathworker · somatic therapist · earth medicine facilitator</p>
+        <p>I believe each one of us has boundless beauty to share simply by being ourselves. But first, we must ask ourselves who we really are. I am dedicated to facilitating that inner exploration. I aim to empower others to live courageously, to step into the unknown, to get lost, and to slow down and appreciate the view. Basically, to make the most of this blip of a lifetime inhabiting this body on this planet. My core values are courage, joy, and freedom.</p>
+        <div class="proverb">&ldquo;to get lost is to find the way&rdquo;<span class="attrib">— african proverb</span></div>
+        <p>After spending much of my upbringing seeking answers, I discovered that questions are far more interesting. Curiosity led me to study the psyche through Western psychology, Eastern philosophy, and exploring alternative states of consciousness. As a student of somatic therapy, yoga, and breathwork, I see the body as our greatest ally as we move through life. I hold retreats and workshops across Europe with an emphasis on (dis)integration. My perspective bridges the scientific with the shamanic, the practical with the mystical.</p>
+        <p>I view integration &amp; disintegration as parallel cycles central within the human journey. Fragmentation and moving towards wholeness. Falling apart and coming back together. Integration is not only about making meaning of extraordinary experiences into everyday consciousness, but the integration of different aspects of the individual and collective psyche.</p>
+        <p>You&rsquo;ll usually find me juggling several books and ideas, examining, learning and unlearning. In my free time I enjoy making herbal infusions, making music, dancing, and getting lost in the forest with my dog.</p>
+
+        <div class="train-card">
+          <h4>trainings &amp; certifications</h4>
+          <ul>
+            <li>Health &amp; Medical Psychology (MSc)</li>
+            <li>Neurodynamic Breathwork</li>
+            <li>Trauma-informed psychedelic facilitation</li>
+            <li>Mindfulness-based Cognitive Therapy</li>
+            <li>Acceptance and Commitment Therapy</li>
+            <li>Psychology (BSc)</li>
+            <li>Shamanic Practitioner Training</li>
+            <li>In progress: Somatic Experiencing therapy; eternal student of the Yawanawa tradition in Brazil</li>
+          </ul>
+        </div>
+
+        <p style="margin-top:34px"><span style="color:var(--clay)">passionate about:</span> dreamwork, herbalism, yoga nidra, mythosomatics, postactivism, trees</p>
+
+        <div class="lineage">I am the daughter of Astier, a woman of resilience, and Alex, a man of peace. I am the granddaughter of strong women Esther and Miriam, and compassionate men Victor and Mesghenna. I am the sister of wise Hiroe and fair Adan. I am the grateful partner of Michael, pup Banzo, and cat Kali, all profound beings and the sunshines of my life. I am a friend to many humans, plants, and animals.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block testimonials">
+    <div class="wrap">
+      <h2 class="section-title">kind words</h2>
+      <p class="section-sub" style="color:#b9b29c">from those I&rsquo;ve worked with</p>
+      <div class="tstage" id="tstage">
+        <div class="tslide visible">
+          <p class="tquote">Hannah&rsquo;s guidance and space holding allows me to connect with my deepest truths, and often brings me insights that I hadn&rsquo;t connected with before, always leaving me with valuable takeaways and a deep feeling of inner tranquility.</p>
+          <p class="tauthor">rose</p>
+        </div>
+        <div class="tslide">
+          <p class="tquote">Hannah let me feel at ease and comfortable enough to let my body&rsquo;s wisdom take over. Because of this I did not feel any sense of self-judgement or embarrassment during my sessions. Nowadays I feel much more connected with my fellow humans, the world, and my ancestors.</p>
+          <p class="tauthor">geraldine</p>
+        </div>
+        <div class="tslide">
+          <p class="tquote">I truly recommend Hannah for her interpersonal skills, her extensive knowledge in the field and, most of all, her calm and dear personality. In short, a beautiful human being with all the set of abilities to make you experience something meaningful, whatever this may be.</p>
+          <p class="tauthor">pepe</p>
+        </div>
+      </div>
+      <div class="tnav">
+        <button class="tarrow" id="tprev" aria-label="previous">&larr;</button>
+        <div class="tdots" id="tdots"></div>
+        <button class="tarrow" id="tnext" aria-label="next">&rarr;</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block newsletter">
+    <div class="narrow">
+      <h3>chat with me</h3>
+      <p class="nl-sub">feel free to reach out with any questions or invitations via the form below</p>
+      <!-- TODO: replace with your Formspree form ID (https://formspree.io → create a form → copy its action URL) -->
+      <form class="contact" action="https://formspree.io/f/your-form-id" method="POST">
+        <div class="field-row">
+          <div>
+            <label for="c-first">first name <span class="req">*</span></label>
+            <input type="text" id="c-first" name="first_name" required />
+          </div>
+          <div>
+            <label for="c-last">last name <span class="req">*</span></label>
+            <input type="text" id="c-last" name="last_name" required />
+          </div>
+        </div>
+        <label for="c-email">email <span class="req">*</span></label>
+        <input type="email" id="c-email" name="email" required />
+        <label for="c-subject">subject <span class="req">*</span></label>
+        <input type="text" id="c-subject" name="subject" required />
+        <label for="c-message">message <span class="req">*</span></label>
+        <textarea id="c-message" name="message" required></textarea>
+        <div class="center"><button type="submit" class="btn">submit</button></div>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== BREATHWORK ==================== -->
+<div class="page" id="page-breathwork">
+  <div class="page-hero">
+    <img data-name="landscape7.JPG" src="https://raw.githubusercontent.com/thefriendlyroast/innerlandscape/main/images/landscape7.JPG" alt="an open landscape" />
+    <h2 class="ph-title">breathwork</h2>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <h3>what&rsquo;s so special about breathwork?</h3>
+      <p class="lead">First of all, the way you breathe determines the way you live.</p>
+      <p>Our breath patterns give us information about our inner state. Is the breath deep or shallow, quick or slow? Am I holding my breath? Every emotion has a breath signature, as do conditions like chronic stress or fatigue. Simply getting curious about the natural breath is where breathwork begins.</p>
+      <p class="lead">The breath is the only autonomic function that is both unconscious and conscious.</p>
+      <p>Our unconscious breath rules our lives. It is intertwined with our nervous system, guiding the way we feel, behave, and express ourselves.</p>
+      <p>When we breathe consciously, it becomes a powerful tool and a gateway to the nervous system. A single deep breath subtly alters our physiology (give it a go!). A few minutes of deep breathing can be equivalent to taking a psychoactive substance.</p>
+      <p>The breath can also expand consciousness, allowing access to more subtle layers of reality.</p>
+      <p>Cultures across the world have worked with the breath for millennia, to alter physical and mental states, access deeper layers of the subconscious, enter trance, and connect with a divine sense of the universe. Breath practices are present in yoga, Qigong, Zen Buddhism, and many other knowledge systems that have often been safeguarded and kept in secrecy.</p>
+      <p class="lead">There are many styles of breathwork.</p>
+      <p>There are many styles of breathwork, from gentle practices to down-regulate the nervous system before bed, to activating pranayama for focus and energy, to detoxifying practices, to practices to cultivate compassion. Singing, chanting, and even smoking can be considered breathwork. My weekly classes explore different styles of breath practices.</p>
+      <p class="lead">Breathwork is about self-empowerment.</p>
+      <p>Breathwork experiences can expand consciousness and quiet the thinking mind in a similar way to psychoactive or psychedelic experiences. However, breathwork experiences are not assisted by any external substance, so the power is all within you.</p>
+      <p class="lead">In essence, breathwork reconnects us with embodied wisdom.</p>
+      <p>The respiratory system is rooted in the words <em>re-</em> and <em>-spirit</em>, expressing the breath as a symbol of returning to spirit, of reconnecting with life.</p>
+      <p>Breathwork can facilitate the release of emotions or energy stuck in the body, allow insights to arise, and lead to significant shifts in perspective. In essence, breathwork reconnects us with a kind of embodied wisdom &mdash; what&rsquo;s often referred to as our &lsquo;inner wisdom&rsquo;, &lsquo;inner healer&rsquo;, or &lsquo;true Self&rsquo;, which lies underneath all layers of cognitive conditioning. By working through these layers, there is the opportunity to live a life closely aligned with who we are and the gifts we are meant to share.</p>
+    </div>
+  </section>
+
+  <div class="img-band spacer-img">
+    <img data-name="spider.jpg" src="https://raw.githubusercontent.com/thefriendlyroast/innerlandscape/main/images/spider.jpg" alt="a spider web catching the light" loading="lazy" style="height:52vh" />
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <h3>what happens during a circular breathwork session?</h3>
+      <p>The rest of this explanation will focus on a specific style of circular breathwork called Neurodynamic Breathwork. This can be practiced 1-1 or in a group, but always in the care of a trusted facilitator.</p>
+      <p>During a session, you practice a style of deep circular breathing designed to enter an expanded state of awareness. In this state, deep physical and emotional healing processes may arise. This style of breathing involves an evocative music journey and is based on principles of Holotropic Breathwork and transpersonal psychology.</p>
+      <p>If you are new to breathwork, you will be guided through a comprehensive introductory talk. Then you lie down, close your eyes, and the journey begins.</p>
+      <div class="pull-quote">the two key principles of breathwork are trust and surrender.</div>
+      <p>The best advice during a breathwork session is to trust the process. The more you trust in your inner wisdom to guide you, the more you are able to let go of the rational mind. By trusting in your innate intelligence, you give yourself permission to surrender into the experience.</p>
+    </div>
+
+    <h3 style="text-align:center; font-size:clamp(24px,3vw,30px); margin:70px auto 20px; max-width:760px">common experiences during a breathwork session include:</h3>
+    <ul class="exp-list">
+      <li><strong>sensory experiences</strong><p>Sensations such as tingling, cramps, tension, heat, cold, and numbness are all possible. These are all forms of physical release. If any tension arises, it is useful to amplify the tension by breathing into it, thus allowing it to process and release. What you resist persists, and the way past is through.</p></li>
+      <li><strong>emotional experiences</strong><p>Physical sensations often reveal underlying emotions that are stored in the body, but have been suppressed or remained unnoticed. During a session, you have permission to feel and express the full spectrum of the human experience, from anger to grief to joy to pleasure, and everything in between.</p></li>
+      <li><strong>biographical experiences</strong><p>Memories may emerge from any point in your life, or from beyond your own life into what some may interpret as past life or ancestral memories. Biographical material often points toward unprocessed emotions ready to be released, or triggers insights around key life moments or decisions.</p></li>
+      <li><strong>perinatal experiences</strong><p>It is possible to relive a part of your own birth process. This can take many forms, such as a blissful oceanic experience of being in the womb, or a feeling of fighting your way through the birth canal to be reborn. These tend to be empowering, healing, and life-changing experiences.</p></li>
+      <li><strong>transpersonal experiences</strong><p>Transpersonal refers to transcending the self, and these experiences can take many forms. Dreamlike visions, becoming one with the universe, identifying with a plant or animal, and receiving insights or information are all examples of transpersonal experiences.</p></li>
+      <li><strong>yoga nidra states</strong><p>Yoga nidra, or yogic sleep, is a profound state of rest and relaxation in which you lose track of time and space. This is closer to a trance state than a deep sleep. Often you return after the session feeling deeply rested, restored, and aware.</p></li>
+    </ul>
+  </section>
+
+  <section class="block" style="background:var(--cream-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line)">
+    <div class="prose">
+      <h3>what happens after a breathwork session?</h3>
+      <p>After a breathwork session, you are slowly guided back to the present moment. This is a time for gentleness, tea, snacks, and simply being with yourself. There is time for sharing experiences if you feel like it, or journaling if that feels better.</p>
+      <p>If you are breathing in a group, you will have a longer time to draw, paint, collage, or express your experience in another way before you attempt to express it in words. You may treasure the ineffability of the experience and choose to share very little verbally, or you may find it important to speak aloud an experience in detail. Both are welcome.</p>
+      <p>The prolonged effects of breathwork can&rsquo;t always be grasped in words. Oftentimes, particularly after continued practice or after a retreat, there is a sense of something shifting in yourself, in your life, or in how you relate to your everyday life.</p>
+      <p style="margin-bottom:34px">Some common experiences following a breathwork session or retreat include:</p>
+      <div class="two-col-list">
+        <div>
+          <ul class="tick-list">
+            <li>heightened creativity / sexual / life force energy</li>
+            <li>increased self awareness</li>
+            <li>greater presence</li>
+            <li>more self-love, self-compassion, and self-acceptance</li>
+            <li>a sense of empowerment</li>
+            <li>heightened connection with nature</li>
+            <li>feeling a weight lifted / something released</li>
+            <li>more fun / playfulness in life</li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-label">some potentially less comfortable experiences</div>
+          <ul class="tick-list">
+            <li>increased sensitivity</li>
+            <li>a sense of fatigue / needing to rest</li>
+            <li>difficult or suppressed emotions rising</li>
+            <li>things that aren&rsquo;t serving you in life becoming clear</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:40px"><em>Giving yourself time and space for integration is crucial.</em> Integration allows you to cultivate the gifts from your experience and opens opportunities for sustained growth and transformation.</p>
+    </div>
+  </section>
+
+  <section class="block cta-band">
+    <p class="cta-q">curious?</p>
+    <a class="btn solid" href="#book-a-session">book an intake session</a>
+  </section>
+</div>
+
+<!-- ==================== WORKSHOPS ==================== -->
+<div class="page" id="page-workshops">
+  <div class="page-hero">
+    <img data-name="landscape5.JPG" src="https://raw.githubusercontent.com/thefriendlyroast/innerlandscape/main/images/landscape5.JPG" alt="a gathering space in nature" />
+    <h2 class="ph-title">workshops &amp; retreats</h2>
+  </div>
+
+  <section class="block" style="padding-top:70px">
+    <p class="when">sign up for the newsletter (home page) to stay up to date with the latest retreats and group offerings</p>
+    <div class="ws-block">
+      <span class="ws-sub">weekly classes</span>
+      <h3>breath &amp; yoga nidra</h3>
+      <p>Live at <a href="https://yogaseads.nl/" target="_blank" rel="noopener">Yogaseads</a> in Scheveningen, Den Haag.<br/>Thursdays at 19.00: breath &amp; yoga nidra.</p>
+    </div>
+
+    <div class="ws-block">
+      <span class="ws-sub">monthly circles</span>
+      <h3>women&rsquo;s circles &amp; grief circles</h3>
+      <p>I hold women&rsquo;s circles &amp; grief circles in Den Haag and occasionally online.</p>
+      <p style="margin-top:14px">Learn more about women&rsquo;s circles <a href="https://www.innerlandscape.nl/womens-circles">here</a>. Grief circles are held monthly starting on June 14th &mdash; you can find more information <a href="https://www.yogaseads.nl/transitions-june">here</a>.</p>
+    </div>
+
+    <div class="ws-block">
+      <span class="ws-sub">retreats &amp; workshops</span>
+      <div class="event">
+        <div class="e-date"><b>within &amp; beyond</b>march 28 &ndash; 29, 2025</div>
+        <div>
+          <span class="e-loc">netherlands</span>
+          <p>A 1.5-day small group psilocybin retreat in a beautiful serene setting nestled in the Amstelpark, Amsterdam, including comprehensive preparation and integration.</p>
+          <span class="e-note">*discounted places available</span>
+        </div>
+      </div>
+      <div class="event">
+        <div class="e-date"><b>beyond experience</b>april 24 &ndash; 27, 2025</div>
+        <div>
+          <span class="e-loc">germany</span>
+          <p>A four-day non-residential workshop focused on psychedelic integration, personal development, and exploring non-substance induced altered states of consciousness.</p>
+          <span class="e-note">*discounted places available on request</span>
+        </div>
+      </div>
+      <div class="event">
+        <div class="e-date"><b>beckley retreats</b>may 25 &ndash; 30, 2025</div>
+        <div>
+          <span class="e-loc">netherlands</span>
+          <p>A six-day psilocybin retreat in the wooded heart of the Netherlands, including two truffle ceremonies and comprehensive preparation and integration.</p>
+        </div>
+      </div>
+      <div class="event">
+        <div class="e-date"><b>honouring transitions</b>june 14, 2025</div>
+        <div>
+          <span class="e-loc">netherlands</span>
+          <p>A 2.5 hour gathering to honour grief and change. These will take place monthly until October (July 26, August 23, September 20, October 18) &mdash; you are welcome to drop in on one or all sessions. Find more information about the concept on <a href="https://www.instagram.com/hannahdewaal_/" target="_blank" rel="noopener">instagram</a>.</p>
+          <span class="e-note">*in support of genocide and mass starvation. discounted places available on request</span>
+        </div>
+      </div>
+      <div class="event">
+        <div class="e-date"><b>beckley retreats</b>august 10 &ndash; 15, 2025</div>
+        <div>
+          <span class="e-loc">netherlands</span>
+          <p>A six-day psilocybin retreat in the wooded heart of the Netherlands, including two truffle ceremonies and comprehensive preparation and integration.</p>
+          <span class="e-note">*contact me for referral discounts</span>
+        </div>
+      </div>
+      <div class="event">
+        <div class="e-date"><b>within &amp; beyond</b>october 4 &ndash; 5, 2025</div>
+        <div>
+          <span class="e-loc">netherlands</span>
+          <p>A 1.5-day small group psilocybin retreat in a beautiful serene setting nestled in the Amstelpark, Amsterdam, including comprehensive preparation and integration.</p>
+        </div>
+      </div>
+      <div class="event">
+        <div class="e-date"><b>footsteps</b>october 6 &ndash; november 10, 2025</div>
+        <div>
+          <span class="e-loc">online</span>
+          <p>A six-week online course focused on psychedelic integration through self exploration and practical tools to integrate and embody your values.</p>
+          <span class="e-note">*discounted places available on request</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="img-band spacer-img">
+    <img data-name="hannah6.jpg" src="https://raw.githubusercontent.com/thefriendlyroast/innerlandscape/main/images/hannah6.jpg" alt="hannah in nature" loading="lazy" style="object-position:50% 30%; height:52vh" />
+  </div>
+</div>
+
+<!-- ==================== BOOK A SESSION ==================== -->
+<div class="page" id="page-book-a-session">
+  <section class="block">
+    <div class="wrap book-grid">
+      <div>
+        <h2 style="font-size:clamp(38px,5vw,54px); margin-bottom:20px">book a session</h2>
+        <p>I offer 1-1 sessions in person in Den Haag and online via Zoom. I always offer a free 20-min intro call to explore if we are a good match.</p>
+        <p>If you are interested in a specific workshop or group activity, please mention it in the subject line.</p>
+        <p>Contact me directly via email, or use the form below.</p>
+      </div>
+      <div class="side-img">
+        <img data-name="hannah7.jpg" src="https://raw.githubusercontent.com/thefriendlyroast/innerlandscape/main/images/hannah7.jpg" alt="hannah" loading="lazy" style="object-position:50% 25%" />
+      </div>
+    </div>
+  </section>
+
+  <section class="block newsletter" style="border-top:1px solid var(--line)">
+    <div class="narrow">
+      <h3>chat with me</h3>
+      <p class="nl-sub">feel free to reach out with any questions or invitations via the form below</p>
+      <!-- TODO: replace with your Formspree form ID (https://formspree.io) -->
+      <form class="contact" action="https://formspree.io/f/your-form-id" method="POST">
+        <div class="field-row">
+          <div>
+            <label for="b-first">first name <span class="req">*</span></label>
+            <input type="text" id="b-first" name="first_name" required />
+          </div>
+          <div>
+            <label for="b-last">last name <span class="req">*</span></label>
+            <input type="text" id="b-last" name="last_name" required />
+          </div>
+        </div>
+        <label for="b-email">email <span class="req">*</span></label>
+        <input type="email" id="b-email" name="email" required />
+        <label for="b-subject">subject <span class="req">*</span></label>
+        <input type="text" id="b-subject" name="subject" required />
+        <label for="b-message">message <span class="req">*</span></label>
+        <textarea id="b-message" name="message" required></textarea>
+        <div class="center"><button type="submit" class="btn">submit</button></div>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== RESOURCES ==================== -->
+<div class="page" id="page-resources">
+  <div class="page-hero">
+    <img data-name="landscape12.JPG" src="https://raw.githubusercontent.com/thefriendlyroast/innerlandscape/main/images/landscape12.JPG" alt="a quiet natural scene" />
+    <h2 class="ph-title">resources</h2>
+  </div>
+
+  <section class="block">
+    <div class="wrap">
+      <p class="when" style="margin:0 auto 0">here you can find a collection of resources and events</p>
+      <div class="res-grid">
+        <div class="res-card">
+          <h4>free psychedelic integration workbook</h4>
+          <p>Developed together with David Heuer and the MIND Foundation, this workbook provides psychoeducation around psychedelic experiences and some simple integration tools and techniques. It centres around three pillars of integration: remember, express, and connect.</p>
+          <a class="more" href="#resources">download</a>
+        </div>
+        <div class="res-card">
+          <h4>playlists</h4>
+          <ul class="tick-list">
+            <li><a href="https://open.spotify.com/playlist/6aQH7ANcuFp3Pv9L1nFY4b" target="_blank" rel="noopener">music medicína</a> &mdash; healing music from across cultures</li>
+            <li><a href="https://open.spotify.com/playlist/2zSadWOXizy9FDDAA0xD0M" target="_blank" rel="noopener">caffeine &amp; other drugs</a> &mdash; songs to play in your living room café</li>
+            <li><a href="https://open.spotify.com/playlist/4xCdnNlxYM5dnrdfIZFCXN" target="_blank" rel="noopener">afro groove</a> &mdash; songs to move &amp; groove to</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="img-band spacer-img">
+    <img data-name="hannah5.jpg" src="https://raw.githubusercontent.com/thefriendlyroast/innerlandscape/main/images/hannah5.jpg" alt="hannah" loading="lazy" style="object-position:50% 30%; height:48vh" />
+  </div>
+</div>
+
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    <div>
+      <h5>inner landscape</h5>
+      <p style="max-width:320px; font-size:14px; line-height:1.7">compassionate spaces to explore the psyche through breath and body. den haag, netherlands.</p>
+    </div>
+    <div>
+      <ul>
+        <li><a href="#home">home</a></li>
+        <li><a href="#about">about</a></li>
+        <li><a href="#breathwork">breathwork</a></li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><a href="#workshops">workshops</a></li>
+        <li><a href="#book-a-session">book a session</a></li>
+        <li><a href="#resources">resources</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; inner landscape</span>
+    <a href="https://www.instagram.com/hannahdewaal_/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M7 2h10c2.76 0 5 2.24 5 5v10c0 2.76-2.24 5-5 5H7c-2.76 0-5-2.24-5-5V7c0-2.76 2.24-5 5-5z" stroke="#b9b29c" stroke-width="1.5"/><circle cx="12" cy="12" r="4.2" stroke="#b9b29c" stroke-width="1.5"/><circle cx="17.4" cy="6.6" r="1.1" fill="#b9b29c"/></svg>
+      @hannahdewaal_
+    </a>
+  </div>
+</footer>
+
+<script>
+  /* ---------- routing ---------- */
+  var PAGES = ["home", "about", "breathwork", "workshops", "book-a-session", "resources"];
+  function route() {
+    var h = (location.hash || "#home").replace("#", "");
+    var page = PAGES.indexOf(h) !== -1 ? h : "home";
+    var sections = document.querySelectorAll(".page");
+    for (var i = 0; i < sections.length; i++) {
+      sections[i].classList.toggle("active", sections[i].id === "page-" + page);
+    }
+    var links = document.querySelectorAll("[data-nav]");
+    for (var j = 0; j < links.length; j++) {
+      links[j].classList.toggle("active", links[j].getAttribute("data-nav") === page);
+    }
+    document.title = page === "home" ? "inner landscape" : page.replace(/-/g, " ") + " — inner landscape";
+    window.scrollTo(0, 0);
+    document.body.classList.remove("nav-open");
+  }
+  window.addEventListener("hashchange", route);
+  route();
+
+  /* ---------- mobile menu ---------- */
+  document.getElementById("burger").addEventListener("click", function () {
+    document.body.classList.toggle("nav-open");
+  });
+
+  /* ---------- image fallback: raw GitHub -> local images/ (for deployment) ---------- */
+  document.addEventListener("error", function (e) {
+    var t = e.target;
+    if (t && t.tagName === "IMG" && t.getAttribute("data-name") && !t.getAttribute("data-fb")) {
+      t.setAttribute("data-fb", "1");
+      t.src = "images/" + t.getAttribute("data-name");
+    }
+  }, true);
+
+  /* ---------- testimonial carousel ---------- */
+  var slides = document.querySelectorAll("#tstage .tslide");
+  var dotsBox = document.getElementById("tdots");
+  var idx = 0, timer = null;
+  for (var k = 0; k < slides.length; k++) {
+    (function (n) {
+      var d = document.createElement("div");
+      d.className = "tdot" + (n === 0 ? " on" : "");
+      d.addEventListener("click", function () { show(n); restart(); });
+      dotsBox.appendChild(d);
+    })(k);
+  }
+  function show(n) {
+    idx = (n + slides.length) % slides.length;
+    for (var i = 0; i < slides.length; i++) {
+      slides[i].classList.toggle("visible", i === idx);
+    }
+    var dots = dotsBox.children;
+    for (var j = 0; j < dots.length; j++) {
+      dots[j].classList.toggle("on", j === idx);
+    }
+  }
+  function restart() { if (timer) clearInterval(timer); timer = setInterval(function () { show(idx + 1); }, 7000); }
+  document.getElementById("tprev").addEventListener("click", function () { show(idx - 1); restart(); });
+  document.getElementById("tnext").addEventListener("click", function () { show(idx + 1); restart(); });
+  restart();
+</script>
+</body>
+</html>
