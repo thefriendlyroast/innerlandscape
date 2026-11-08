@@ -451,25 +451,8 @@
     <div class="narrow">
       <h3>let&rsquo;s connect</h3>
       <p class="nl-sub">stay up to date with the latest events and offerings, and occasional musings</p>
-      <!-- TODO: replace the action URL with your Buttondown embed URL
-           (Buttondown → your newsletter → Embed → copy the form action) -->
-      <form class="nl" action="https://subscribe-forms.beehiiv.com/v3/loader.js" method="post" target="_blank">
-        <div class="field-row">
-          <div>
-            <label for="nl-first">first name</label>
-            <input type="text" id="nl-first" name="first_name" />
-          </div>
-          <div>
-            <label for="nl-last">last name</label>
-            <input type="text" id="nl-last" name="last_name" />
-          </div>
-        </div>
-        <label for="nl-email">email <span class="req">*</span></label>
-        <input type="email" id="nl-email" name="email" required />
-        <div class="center">
-          <button type="submit" class="btn">subscribe</button>
-        </div>
-      </form>
+      <!-- Beehiiv subscribe form (renders when deployed; external scripts are blocked in the canvas preview) -->
+      <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="d77784bd-de63-4d63-a10a-652249fae954"></script>
     </div>
   </section>
 </div>
@@ -544,7 +527,7 @@
     <div class="narrow">
       <h3>chat with me</h3>
       <p class="nl-sub">feel free to reach out with any questions or invitations via the form below</p>
-      <!-- TODO: replace with your Formspree form ID (https://formspree.io → create a form → copy its action URL) -->
+      <!-- Formspree: chat form -->
       <form class="contact" action="https://formspree.io/f/moeeoqqa" method="POST">
         <div class="field-row">
           <div>
@@ -766,8 +749,8 @@
     <div class="narrow">
       <h3>chat with me</h3>
       <p class="nl-sub">feel free to reach out with any questions or invitations via the form below</p>
-      <!-- TODO: replace with your Formspree form ID (https://formspree.io) -->
-      <form class="contact" action="https://formspree.io/f/your-form-id" method="POST">
+      <!-- Formspree: booking form -->
+      <form class="contact" action="https://formspree.io/f/moeeoqqa" method="POST">
         <div class="field-row">
           <div>
             <label for="b-first">first name <span class="req">*</span></label>
